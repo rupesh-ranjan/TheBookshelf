@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RupeshWeb", "RupeshWeb\RupeshWeb.csproj", "{DADC0175-6DF2-461C-A0CD-29E8E30F8AA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RupeshWeb", "RupeshWeb\RupeshWeb.csproj", "{DADC0175-6DF2-461C-A0CD-29E8E30F8AA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rupesh.DataAccess", "Rupesh.DataAccess\Rupesh.DataAccess.csproj", "{22C63BF6-8E1C-4D83-AF68-A29CA8FDEEFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rupesh.Models", "Rupesh.Models\Rupesh.Models.csproj", "{0EA35016-8FD5-4DF5-9D98-A5FB0D5B1FD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rupesh.Utility", "Rupesh.Utility\Rupesh.Utility.csproj", "{58468D6D-48F0-4FD1-896C-67DF5161478F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{DADC0175-6DF2-461C-A0CD-29E8E30F8AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DADC0175-6DF2-461C-A0CD-29E8E30F8AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DADC0175-6DF2-461C-A0CD-29E8E30F8AA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22C63BF6-8E1C-4D83-AF68-A29CA8FDEEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C63BF6-8E1C-4D83-AF68-A29CA8FDEEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C63BF6-8E1C-4D83-AF68-A29CA8FDEEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C63BF6-8E1C-4D83-AF68-A29CA8FDEEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA35016-8FD5-4DF5-9D98-A5FB0D5B1FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA35016-8FD5-4DF5-9D98-A5FB0D5B1FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA35016-8FD5-4DF5-9D98-A5FB0D5B1FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA35016-8FD5-4DF5-9D98-A5FB0D5B1FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58468D6D-48F0-4FD1-896C-67DF5161478F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58468D6D-48F0-4FD1-896C-67DF5161478F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58468D6D-48F0-4FD1-896C-67DF5161478F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58468D6D-48F0-4FD1-896C-67DF5161478F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
