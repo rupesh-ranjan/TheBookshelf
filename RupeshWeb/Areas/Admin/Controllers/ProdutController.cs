@@ -18,7 +18,7 @@ namespace RupeshWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
             return View(objProductList);
         }
         public IActionResult Upsert(int? id)
@@ -91,42 +91,33 @@ namespace RupeshWeb.Areas.Admin.Controllers
             }
         }
 
+        #region API Calls
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objProductList });
+        }
 
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            var productToBeDeleted = _unitOfWork.Product.Get(u => u.Id == id);
+            if (productToBeDeleted == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            Product? productFromDB = _unitOfWork.Product.Get(u => u.Id == id);
-            //Product? ProductFromDB1 = _unitOfWork.Product.Categories.FirstOrDefault(u => u.Id == id);
-            //Product? ProductFromDB2 = _unitOfWork.Product.Categories.Where(u => u.Id == id).FirstOrDefault();
-            if (productFromDB == null)
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
             {
-                return NotFound();
+                System.IO.File.Delete(oldImagePath);
             }
-
-            return View(productFromDB);
-        }
-        [HttpPost]
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult Delete(int? id)
-        public IActionResult Delete(Product product)
-        {
-            //Product? ProductFromDB = _unitOfWork.Product.Categories.Find(id);
-            //if (ProductFromDB == null)
-            //{
-            //    return NotFound();
-            //}
-            if (product == null)
-            {
-                return NotFound();
-            }
-            //_unitOfWork.Product.Categories.Remove(ProductFromDB);
-            _unitOfWork.Product.Remove(product);
+            _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
-            TempData["success"] = "Product deleted successfuly";
-            return RedirectToAction("Index");
+
+            return Json(new { success = true, message = "Delete Success" });
         }
+        #endregion
+
     }
 }
