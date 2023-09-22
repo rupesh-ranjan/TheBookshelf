@@ -8,8 +8,10 @@ namespace Rupesh.DataAccess.Data
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) {}
-        public DbSet<Category> Categories{ get; set; }
-        public DbSet<Product> Products{ get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +21,13 @@ namespace Rupesh.DataAccess.Data
                 new Category { Id=2, Name="Drama", DisplayOrder=2},
                 new Category { Id=3, Name="SciFi", DisplayOrder=3}
             );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id=1, Name="Book World",      StreetAddress ="123 st" , City="New Delhi", State="Dehi",        PostalCode="110001", PhoneNumber="9876543210"},
+                new Company { Id=2, Name="Stationary Shop", StreetAddress ="321 st" , City="Mumbai",    State="Maharashtra", PostalCode="301202", PhoneNumber="87655432109"},
+                new Company { Id=3, Name="Book Mania",      StreetAddress ="231 st" , City="Banglore",  State="Karantaka",   PostalCode="560045", PhoneNumber="7654321098"}
+            );
+
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
