@@ -1,4 +1,5 @@
 ﻿using Rupesh.DataAccess.Data;
+using Rupesh.DataAccess.Repository.IRepository;
 using Rupesh.Models;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rupesh.DataAccess.Repository.IRepository
+namespace Rupesh.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -19,7 +20,7 @@ namespace Rupesh.DataAccess.Repository.IRepository
         public IOrderDetailRepository OrderDetail { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext dbContext) 
+        public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             Category = new CategoryRepository(_dbContext);

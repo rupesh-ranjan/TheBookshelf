@@ -15,7 +15,7 @@ namespace Rupesh.Models
         public string ApplicationUserId { get; set; }
         [ForeignKey(nameof(ApplicationUserId))]
         [ValidateNever]
-        public string ApplicationUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ShippingDate { get; set; }
         public double OrderTotal { get; set; }
@@ -27,7 +27,8 @@ namespace Rupesh.Models
         public DateTime PaymentDate { get; set; }
         public DateTime PaymentDueDate { get; set; }
 
-        public string? PaymentIntextId { get; set; }
+        public string? SessionId { get; set; }
+        public string? PaymentIntentId { get; set; }
 
         [Required]
         public string PhoneNumber { get; set; }
