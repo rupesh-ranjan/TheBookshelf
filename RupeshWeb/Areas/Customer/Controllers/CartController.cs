@@ -35,20 +35,60 @@ namespace RupeshWeb.Areas.Customer.Controllers
             foreach (var cart in ShoppingCartVM.ShoppingCartList)
             {
                 cart.Price = GetPriceBasedOnQuantity(cart);
-                ShoppingCartVM.OrdertTotal += cart.Price * cart.Count;
+                ShoppingCartVM.OrderTotal += cart.Price * cart.Count;
             }
             return View(ShoppingCartVM);
         }
+
+        public IActionResult Plus(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            cartFromDb.Count += 1;
+            _unitOfWork.ShoppingCart.Update(cartFromDb);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Minus(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            if (cartFromDb.Count <= 1)
+            {
+                //remove item from cart
+                _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            }
+            else
+            {
+                cartFromDb.Count -= 1;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Remove(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Summary()
+        {
+            return View();
+        }
+
 
         private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
         {
             if (shoppingCart.Count <= 50)
             {
                 return shoppingCart.Product.Price;
-            } else if (shoppingCart.Count <= 100)
+            }
+            else if (shoppingCart.Count <= 100)
             {
                 return shoppingCart.Product.Price50;
-            }else
+            }
+            else
             {
                 return shoppingCart.Product.Price100;
             }
