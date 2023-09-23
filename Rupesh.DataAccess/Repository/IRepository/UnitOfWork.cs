@@ -16,6 +16,8 @@ namespace Rupesh.DataAccess.Repository.IRepository
         public ICompanyRepository Company { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public IOrderDetailRepository OrderDetail { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
 
         public UnitOfWork(ApplicationDbContext dbContext) 
         {
@@ -25,7 +27,8 @@ namespace Rupesh.DataAccess.Repository.IRepository
             Company = new CompanyRepository(_dbContext);
             ShoppingCart = new ShoppingCartRepository(_dbContext);
             ApplicationUser = new ApplicationUserRepository(_dbContext);
-
+            OrderHeader = new OrderHeaderRepository(_dbContext);
+            OrderDetail = new OrderDetailRepository(_dbContext);
         }
 
         public void Save()
